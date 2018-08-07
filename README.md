@@ -1,4 +1,4 @@
-# The Unofficial Makers Guide to Using Linux
+# The Unofficial Makers Guide to Installing Linux
 
 **tl;dr**: This is a minimal tutorial for Makers graduates to get a working dev setup on Linux (Ubuntu LTS 18.04).
 
