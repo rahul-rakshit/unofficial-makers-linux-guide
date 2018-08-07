@@ -1,5 +1,7 @@
 # The Unofficial Makers Guide to Using Linux
 
+**tl;dr**: This is a minimal tutorial for Makers graduates to get a working dev setup on Linux (Ubuntu LTS 18.04).
+
 * [About](#about)
 * [Reasons for Using Linux](#reasons-for-using-linux)
 * [Read This Before Installing](#read-this-before-installing)
@@ -13,13 +15,13 @@
 
 ## About
 
-_last updated 5th Aug, 2018_
+_last updated 7th Aug, 2018_
 
 Did you borrow one of the Makers macs and now have to give it back after graduation? You don't want to spend all that money on a new mac but _do_ want a good setup for writing software?
 
 My name is Rahul, I'm from the May 2018 cohort and I used Linux during my entire Makers experience. I want to encourage the use of open-source software and, seeing as I'm in a good position to make a tailor-made Linux tutorial for Makers, I decided to just go ahead and write one. I did my best to make it as easy as possible for you to set up your dev environment.
 
-In the tutorial I'll take you through the installation process of the newest version of Ubuntu, RVM, slack, node, postgresql and all the essential tools we use at Makers.
+In the tutorial I'll take you through the installation process of the newest version of Ubuntu LTS, RVM, slack, node, postgresql and all the essential tools we use at Makers.
 
 If you're stuck, would like some Linux tips or want some advice on trying out a Linux distro other than Ubuntu (eg. Manjaro, which is awesome!), slack me @rahulrokhit or just write me an [email](rahulrakshit@gmx.com).
 
@@ -33,7 +35,7 @@ If you're stuck, would like some Linux tips or want some advice on trying out a 
 * Linux is secure. There are far fewer viruses for Linux than there are for macOS.
 * Employers are happy to see knowledge of Linux.
 
-I believe Linux has an unfair reputation for being complicated. If you use a user-friendly distro like Ubuntu and stick to using package managers, your experience of Linux should be fairly smooth. Also, while some commercial software doesn't run on Linux, including games and commercial video or photo editing software, all the usual software (skype, spotify, etc.) _is_ available just the same and shouldn't affect your experience as a developer.
+I believe Linux has an unfair reputation for being complicated. You absolutely don't _have_ to use vim and if you use a user-friendly distro like Ubuntu and stick to using package managers, your experience of Linux should be fairly smooth. Also, while some commercial software doesn't run on Linux, including games and commercial video or photo editing software, all the usual software (skype, spotify, etc.) _is_ available just the same and shouldn't affect your experience as a developer.
 
 I would argue that web developers are in the best position to use Linux. Everything we need to do is based on open-source software and most servers are running on Linux anyway. Why not spend less money on better computers?
 
@@ -41,7 +43,7 @@ I would argue that web developers are in the best position to use Linux. Everyth
 
 **Linux and Proprietary Drivers**
 
-Bad hardware support on Linux for PCs was historically quite a frustrating problem. This is not Linux's fault: Device manufacturers that do not provide a Linux-version of their device drivers effectively block you from using their hardware on Linux. Sometimes there is a proprietary Linux driver which you can install along during installing the operating system. I hear that in the last 5 years many more devices are being supported and you can almost always just "throw linux" at some hardware and it will most probably work.
+Bad hardware support on Linux for PCs was historically quite a frustrating problem. This is not Linux's fault: Device manufacturers that do not provide open-source or provide a Linux-version for their device drivers effectively block you from using their hardware on Linux. Sometimes there is a proprietary Linux driver which you can install along during installing the operating system. I hear that in the last 5 years many more devices are being supported and you can almost always just "throw linux" at some hardware and it will most probably work.
 
 Still, you should _try Ubuntu without installing_ first! Only commit to installing when you've checked that your Wi-Fi, keyboard, trackpad and webcam work.
 
@@ -49,12 +51,18 @@ Still, you should _try Ubuntu without installing_ first! Only commit to installi
 
 I'm assuming you're familiar with Homebrew and that you've installed things with it on macOS. I recommend using the following two package managers for Ubuntu:
 
-* `apt`: The default package manager. While `apt` only searches the official Ubuntu repositories by default, you may add repositories other third-party repositories called PPAs.
+* `apt`: The default package manager. While `apt` only searches the official Ubuntu repositories by default, you may add repositories other third-party repositories called [PPA](https://www.makeuseof.com/tag/ubuntu-ppa-technology-explained/)s.
 * `snap`: The package manager made by Canonical (the company behind Ubuntu) that ships packages with all their dependencies. This is your package manager of choice for commercial apps like Slack or Skype.
 
-There is a fork of Homebrew for Linux called Linuxbrew in case you're interested. I think it's rather unnecessary because the Ubuntu package manager is better than brew.
+There is a fork of Homebrew for Linux called [Linuxbrew](http://linuxbrew.sh/) in case you're interested. I think it's rather unnecessary because the Ubuntu package manager is better (better system support and binary packages) than brew.
 
-The reason it's highly recommended to install software using these package managers is that you automatically install the necessary dependencies and can update all apps at once rather than one at a time. That means that you don't need an app to run auto-updates and bother you with notifications. You should, however, occasionally run updates on your computer. The update command for `apt` is `sudo apt update && sudo apt upgrade` and the one for `snap` is `sudo snap refresh`.
+The reason it's highly recommended to install software using these package managers is because they provide
+
+* good dependency management
+* you can update all apps with one command at your leisure rather than being bothered by notifications from each app
+* uninstalling apps is a breeze
+
+The update command for `apt` is `sudo apt update && sudo apt upgrade` and the one for `snap` is `sudo snap refresh`.
 
 <img src="updating.gif" width="400" />
 
@@ -111,19 +119,21 @@ If you want to install a program, such as `tree`, you do it as follows:
 * Install atom and slack
   * `sudo snap install --classic atom`
   * `sudo snap install --classic slack`
+* If you need the Chrome dev tools get Chromium. <br> [Chromium](https://www.chromium.org/) is made by Google and is the [upstream source](https://en.wikipedia.org/wiki/Upstream_(software_development)) of Google Chrome. It has pretty much the same functionality as Chrome (except auto-updates, which shouldn't matter if you update your apps using `sudo apt update && sudo apt upgrade`). If you want the _real_ Google Chrome, you can get it from the [official website](https://www.google.com/chrome/), but I recommend that you stick to chromium.
+  * `sudo apt install chromium-browser`
 * Next, in order for RVM to work properly, we need to run our terminal as a login shell. Here's how you do that:
 
 <img src="login_shell.gif" width="400" />
 
 * Now, we can install RVM by running the following commands:
-  * Add RVM's gpg key: <br> `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB` <br> If that fails do this: `curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -`
+  * Add RVM's gpg key: <br> `gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB` <br> If that fails do this: `curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -` <br> Alternatively, you may follow the instructions on the [official RVM website](https://rvm.io/rvm/install) if you don't trust me with GPG keys.
   * `curl -sSL https://get.rvm.io | bash -s stable`
   * `source ~/.rvm/scripts/rvm`
   * close and reopen your terminal
   * try running RVM by just typing `rvm`
     * if you get a `rvm isn't a function` error, run `rvm get stable --auto-dotfiles`
     * if some rubies don't compile, run `rvm get head`
-* I think the best way to install node on Ubuntu is using NVM - the node version of RVM. Run the following commands to do that:
+* I think the best way to install node on Ubuntu is using [NVM](https://github.com/creationix/nvm/blob/master/README.md), node version manager (the node analog of RVM):
   * `curl -sL https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh -o install_nvm.sh`
   * `bash install_nvm.sh`
   * to install the latest version of node, run `nvm install node`
@@ -142,7 +152,7 @@ If you want to install a program, such as `tree`, you do it as follows:
 
 ## Getting Used to Ubuntu
 
-Setting up your basic dev setup isn't that hard but it does take a bit of time to get used to. I would suggest installing a theme (arc-theme, communitheme and paper-theme are some of my favorite) if that helps you feel more at home with your new setup.
+Setting up your basic dev setup isn't that hard but it does take a bit of time to get used to. I would suggest installing a theme ([arc-theme](https://github.com/horst3180/arc-theme), [communitheme](https://itsfoss.com/ubuntu-community-theme/) and [paper-theme](https://snwh.org/paper) are some of my favorite) if that helps you feel more at home with your new setup.
 
 If you have questions about what software I use for everyday things, such as email, pdf editing, video player or note taking software, just get in touch with me and I can tell you what I know.
 
