@@ -43,7 +43,7 @@ I would argue that web developers are in the best position to use Linux. Everyth
 
 **Linux and Proprietary Drivers**
 
-Bad hardware support on Linux for PCs was historically quite a frustrating problem. This is not Linux's fault: Device manufacturers that do not provide open-source or provide a Linux-version for their device drivers effectively block you from using their hardware on Linux. Sometimes there is a proprietary Linux driver which you can install along during installing the operating system. I hear that in the last 5 years many more devices are being supported and you can almost always just "throw linux" at some hardware and it will most probably work.
+Bad hardware support on Linux for PCs was historically quite a frustrating problem. This is not Linux's fault: Device manufacturers that do not open-source or provide a Linux-version for their device drivers effectively block you from using their hardware on Linux. Sometimes there is a proprietary Linux driver which you can install along during installing the operating system. I hear that in the last 5 years many more devices are being supported and you can almost always just "throw linux" at some hardware and it will most probably work.
 
 Still, you should _try Ubuntu without installing_ first! Only commit to installing when you've checked that your Wi-Fi, keyboard, trackpad and webcam work.
 
