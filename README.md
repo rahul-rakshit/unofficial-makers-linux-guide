@@ -51,7 +51,7 @@ Still, you should _try Ubuntu without installing_ first! Only commit to installi
 
 I'm assuming you're familiar with Homebrew and that you've installed things with it on macOS. I recommend using the following two package managers for Ubuntu:
 
-* `apt`: The default package manager. While `apt` only searches the official Ubuntu repositories by default, you may add repositories other third-party repositories called [PPA](https://www.makeuseof.com/tag/ubuntu-ppa-technology-explained/)s.
+* `apt`: The default package manager. While `apt` only searches the official Ubuntu repositories by default, you may add other third-party repositories called [PPA](https://www.makeuseof.com/tag/ubuntu-ppa-technology-explained/)s.
 * `snap`: The package manager made by Canonical (the company behind Ubuntu) that ships packages with all their dependencies. This is your package manager of choice for commercial apps like Slack or Skype.
 
 There is a fork of Homebrew for Linux called [Linuxbrew](http://linuxbrew.sh/) in case you're interested. I think it's rather unnecessary because the Ubuntu package manager is better (better system support and binary packages) than brew.
